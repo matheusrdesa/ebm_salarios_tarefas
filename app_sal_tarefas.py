@@ -210,16 +210,24 @@ def get_dashboard_layout():
     ], id="sidebar", className="sidebar")
 
     content = html.Div([
-        html.Div([
-            dbc.Button(html.I(className="fa-solid fa-bars"), id="btn_sidebar", color="link", style={'color': 'white', 'fontSize': '1.2rem', 'textDecoration': 'none'}),
-            html.Img(src=app.get_asset_url("logo.png"), className="logo-white ms-4 me-3", style={'height': '45px'}),
-            html.H3("Gestão de Tarefas e Custos de Obra", className="m-0 text-white", style={'fontWeight': 'bold'}),
-            # Botão de Logout
-            html.A(
-            dbc.Button("Sair", color="danger", size="sm", className="ms-auto", style={'fontWeight': 'bold'}),
-            href="/"  # Isso força o recarregamento da página, fazendo "Logout"
-            )
-        ], className="d-flex align-items-center mb-4 pb-3", style={'borderBottom': f"1px solid {COLORS['grid']}"}),
+        # --- CABEÇALHO CORRIGIDO (Igual ao Ponto Eletrônico) ---
+        dbc.Row([
+            dbc.Col([
+                html.Div([
+                    dbc.Button(html.I(className="fa-solid fa-bars"), id="btn_sidebar", color="link", style={'color': 'white', 'fontSize': '1.2rem', 'textDecoration': 'none'}),
+                    html.Img(src=app.get_asset_url("logo.png"), className="logo-white ms-4 me-3", style={'height': '45px'}),
+                    html.H3("Gestão de Tarefas e Custos de Obra", className="m-0 text-white", style={'fontWeight': 'bold'})
+                ], className="d-flex align-items-center")
+            ], width=10), # Ocupa 80% da largura
+
+            dbc.Col([
+                # Botão alinhado à direita
+                html.A(
+                    dbc.Button("Sair", color="danger", size="sm", className="ms-auto", style={'fontWeight': 'bold', 'float': 'right'}),
+                    href="/"
+                )
+            ], width=2, className="d-flex align-items-center justify-content-end") # Ocupa 20%
+        ], className="mb-4 pb-2", style={'borderBottom': f"1px solid {COLORS['grid']}"}),
 
         # KPIs
         dbc.Row([
