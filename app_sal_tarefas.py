@@ -22,7 +22,7 @@ USUARIOS = {
 FONT_AWESOME = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
 
 # IMPORTANTE: suppress_callback_exceptions=True é necessário para login dinâmico
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.SLATE, FONT_AWESOME], title="Gestão de Obras", suppress_callback_exceptions=True)
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.SLATE, FONT_AWESOME], title="EBM Salários e Tarefas", suppress_callback_exceptions=True)
 server = app.server
 
 # Paleta Padronizada
