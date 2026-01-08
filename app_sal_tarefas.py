@@ -215,7 +215,10 @@ def get_dashboard_layout():
             html.Img(src=app.get_asset_url("logo.png"), className="logo-white ms-4 me-3", style={'height': '45px'}),
             html.H3("Gestão de Tarefas e Custos de Obra", className="m-0 text-white", style={'fontWeight': 'bold'}),
             # Botão de Logout
-            dbc.Button("Sair", id="logout-button", color="danger", size="sm", className="ms-auto", style={'fontWeight': 'bold'})
+            html.A(
+            dbc.Button("Sair", color="danger", size="sm", className="ms-auto", style={'fontWeight': 'bold'}),
+            href="/"  # Isso força o recarregamento da página, fazendo "Logout"
+            )
         ], className="d-flex align-items-center mb-4 pb-3", style={'borderBottom': f"1px solid {COLORS['grid']}"}),
 
         # KPIs
@@ -344,24 +347,20 @@ app.layout = html.Div([
 # =============================================================================
 @app.callback(
     [Output('page-wrapper', 'children'), Output('login-output', 'children')],
-    [Input('login-button', 'n_clicks'), Input('logout-button', 'n_clicks')],
-    [State('username-box', 'value'), State('password-box', 'value'), State('login-state', 'data')]
+    [Input('login-button', 'n_clicks')], # REMOVIDO O LOGOUT DAQUI
+    [State('username-box', 'value'), State('password-box', 'value')]
 )
-def manage_login(n_login, n_logout, username, password, state):
+def manage_login(n_login, username, password): # REMOVIDO n_logout DOS ARGUMENTOS
     ctx = dash.callback_context
     if not ctx.triggered:
         return login_layout, ""
     
-    button_id = ctx.triggered[0]['prop_id'].split('.')[0]
-
-    if button_id == 'logout-button':
-        return login_layout, ""
-
-    if button_id == 'login-button':
+    # Como só tem um Input agora, não precisamos verificar qual botão foi clicado
+    if n_login:
         if username in USUARIOS and USUARIOS[username] == password:
             return get_dashboard_layout(), ""
         else:
-            return login_layout, "Usuário ou senha incorretos."
+            return login_layout, "Acesso Negado: Usuário ou senha incorretos."
 
     return login_layout, ""
 
