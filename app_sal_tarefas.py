@@ -216,7 +216,7 @@ def get_dashboard_layout():
                 html.Div([
                     dbc.Button(html.I(className="fa-solid fa-bars"), id="btn_sidebar", color="link", style={'color': 'white', 'fontSize': '1.2rem', 'textDecoration': 'none'}),
                     html.Img(src=app.get_asset_url("logo.png"), className="logo-white ms-4 me-3", style={'height': '45px'}),
-                    html.H3("Gestão de Tarefas e Custos de Obra", className="m-0 text-white", style={'fontWeight': 'bold'})
+                    html.H3("Gestão de Salários e Tarefas", className="m-0 text-white", style={'fontWeight': 'bold'})
                 ], className="d-flex align-items-center")
             ], width=10), # Ocupa 80% da largura
 
