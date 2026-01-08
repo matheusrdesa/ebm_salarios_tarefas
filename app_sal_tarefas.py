@@ -114,37 +114,80 @@ comps = sorted(df_salarios['Competencia'].unique()) if not df_salarios.empty els
 # 4. LAYOUTS (LOGIN vs DASHBOARD)
 # =============================================================================
 
-# --- A. TELA DE LOGIN ---
+# --- A. TELA DE LOGIN (MODERNA) ---
 login_layout = html.Div(
-    dbc.Container(
-        dbc.Row(
-            dbc.Col(
-                dbc.Card(
-                    dbc.CardBody([
-                        html.Div([
-                            html.Img(src=app.get_asset_url("logo.png"), style={'height': '60px', 'marginBottom': '20px'}),
-                            html.H4("Acesso Restrito", className="text-center mb-4", style={'color': 'white', 'fontWeight': 'bold'}),
-                        ], className="text-center"),
-                        
-                        dbc.Input(id="username-box", placeholder="Usuário", type="text", className="mb-3"),
-                        dbc.Input(id="password-box", placeholder="Senha", type="password", className="mb-3"),
-                        
-                        dbc.Button("Entrar", id="login-button", color="info", className="w-100", style={'fontWeight': 'bold'}),
-                        
-                        html.Div(id="login-output", className="text-danger text-center mt-3")
-                    ]),
-                    style={'backgroundColor': COLORS['card_bg'], 'border': f'1px solid {COLORS["grid"]}', 'maxWidth': '400px', 'margin': 'auto'},
-                    className="shadow-lg"
+    [
+        dbc.Card(
+            dbc.CardBody([
+                # Cabeçalho do Card
+                html.Div([
+                    # Tente usar uma logo com fundo transparente se possível
+                    html.Img(src=app.get_asset_url("logo.png"), style={'height': '80px', 'marginBottom': '10px'}),
+                    html.H4("EBM Labor Intelligence", style={'color': 'white', 'fontWeight': 'bold', 'marginBottom': '5px'}),
+                    html.P("Acesso Restrito Administrativo", style={'color': COLORS['subtext'], 'fontSize': '0.9rem'}),
+                ], className="text-center mb-4"),
+
+                # Inputs Estilizados
+                dbc.Label("USUÁRIO", style={'color': COLORS['accent_main'], 'fontWeight': 'bold', 'fontSize': '0.7rem'}),
+                dbc.Input(
+                    id="username-box", 
+                    placeholder="Digite seu usuário...", 
+                    type="text", 
+                    className="mb-3",
+                    style={'backgroundColor': '#0f172a', 'color': 'white', 'border': f'1px solid {COLORS["grid"]}', 'padding': '10px'}
                 ),
-                width=12, sm=8, md=6, lg=4
-            ),
-            justify="center",
-            align="center",
-            className="h-100"
+
+                dbc.Label("SENHA", style={'color': COLORS['accent_main'], 'fontWeight': 'bold', 'fontSize': '0.7rem'}),
+                dbc.Input(
+                    id="password-box", 
+                    placeholder="Digite sua senha...", 
+                    type="password", 
+                    className="mb-4",
+                    style={'backgroundColor': '#0f172a', 'color': 'white', 'border': f'1px solid {COLORS["grid"]}', 'padding': '10px'}
+                ),
+
+                # Botão com Gradiente
+                dbc.Button(
+                    "ACESSAR SISTEMA", 
+                    id="login-button", 
+                    className="w-100", 
+                    size="lg",
+                    style={
+                        'backgroundImage': 'linear-gradient(to right, #06b6d4, #3b82f6)', 
+                        'border': 'none', 
+                        'fontWeight': 'bold', 
+                        'letterSpacing': '1px',
+                        'transition': '0.3s'
+                    }
+                ),
+
+                html.Div(id="login-output", className="text-danger text-center mt-3", style={'fontWeight': 'bold'})
+            ]),
+            style={
+                'width': '100%', 
+                'maxWidth': '420px', 
+                'backgroundColor': 'rgba(30, 41, 59, 0.95)', # Leve transparência
+                'border': f'1px solid {COLORS["grid"]}',
+                'borderRadius': '16px',
+                'boxShadow': '0 10px 25px -5px rgba(0, 0, 0, 0.5)' # Sombra elegante
+            },
+            className="shadow-2xl"
         ),
-        fluid=True,
-        style={'height': '100vh', 'display': 'flex', 'alignItems': 'center', 'justifyContent': 'center'}
-    )
+        
+        # Rodapézinho discreto
+        html.Div("Desenvolvido por EBM Dados © 2026", style={'position': 'absolute', 'bottom': '20px', 'color': COLORS['subtext'], 'fontSize': '0.8rem'})
+    ],
+    # Flexbox para centralizar PERFEITAMENTE na tela
+    style={
+        'height': '100vh',
+        'width': '100vw',
+        'display': 'flex',
+        'justifyContent': 'center',
+        'alignItems': 'center',
+        'flexDirection': 'column',
+        # Fundo Gradiente Escuro
+        'background': 'radial-gradient(circle at center, #1e293b 0%, #020617 100%)'
+    }
 )
 
 # --- B. LAYOUT DO DASHBOARD (Encapsulado em Função) ---
