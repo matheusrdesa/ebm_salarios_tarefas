@@ -122,7 +122,7 @@ login_layout = html.Div(
                 # Cabeçalho do Card
                 html.Div([
                     # Tente usar uma logo com fundo transparente se possível
-                    html.Img(src=app.get_asset_url("logo.png"), style={'height': '80px', 'marginBottom': '10px'}),
+                    html.Img(src=app.get_asset_url("logo.png"), style={'height': '80px', 'marginBottom': '10px', 'filter': 'brightness(0) invert(1)'}),
                     html.H4("EBM Labor Intelligence", style={'color': 'white', 'fontWeight': 'bold', 'marginBottom': '5px'}),
                     html.P("Acesso Restrito Administrativo", style={'color': COLORS['subtext'], 'fontSize': '0.9rem'}),
                 ], className="text-center mb-4"),
