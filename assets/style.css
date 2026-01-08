@@ -1,0 +1,145 @@
+/* assets/style.css */
+
+.logo-white {
+    filter: brightness(0) invert(1);
+    /* Garante que a imagem fique branca pura */
+}
+
+/* --- 1. ESTRUTURA DA SIDEBAR (Menu Lateral) --- */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 18rem; /* Largura da barra */
+    padding: 2rem 1rem;
+    background-color: #1e293b; /* Slate 800 */
+    border-right: 1px solid #334155;
+    transition: all 0.4s ease-in-out; /* Animação suave */
+    z-index: 1050;
+    overflow-x: hidden;
+    overflow-y: auto;
+    white-space: nowrap; /* Evita quebra de texto na animação */
+}
+
+/* Classe para quando estiver fechada */
+.sidebar-collapsed {
+    width: 0rem !important;
+    padding: 2rem 0rem !important;
+    border: none !important;
+    overflow: hidden !important;
+}
+
+/* --- 2. ESTRUTURA DO CONTEÚDO (Main) --- */
+.content {
+    margin-left: 18rem; /* Espaço para a sidebar */
+    padding: 2rem;
+    background-color: #0f172a; /* Slate 900 */
+    min-height: 100vh;
+    transition: all 0.4s ease-in-out; /* Animação suave */
+}
+
+/* Classe para expandir quando a sidebar fecha */
+.content-expanded {
+    margin-left: 0rem !important;
+}
+
+/* --- 3. ESTILIZAÇÃO DOS FILTROS (Dark Mode) --- */
+
+/* Esconder elementos quando a sidebar fecha para não "piscar" */
+.sidebar-collapsed * {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.1s;
+}
+
+/* Datepicker */
+.DateRangePickerInput {
+    background-color: #334155 !important;
+    border: 1px solid #475569 !important;
+    border-radius: 4px !important;
+    height: 38px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+}
+
+#filtro-data input {
+    background-color: transparent !important;
+    color: #f8fafc !important;
+    font-size: 13px !important;
+    line-height: 38px !important;
+    border: none !important;
+    text-align: center !important;
+    width: 90px !important;
+}
+
+.DateInput { background-color: transparent !important; width: 45% !important; }
+.DateRangePickerInput_arrow_svg { fill: #94a3b8 !important; height: 12px !important; }
+.DateRangePickerInput_clearDates { display: none !important; }
+
+/* Dropdowns */
+.Select-control {
+    background-color: #334155 !important;
+    border: 1px solid #475569 !important;
+    color: white !important;
+    height: 38px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+.Select-value-label, .Select-placeholder {
+    color: white !important;
+    line-height: 38px !important;
+    padding-left: 10px !important;
+}
+.Select-input input { color: white !important; }
+.Select-menu-outer {
+    background-color: #1e293b !important;
+    border: 1px solid #475569 !important;
+    z-index: 9999 !important;
+}
+.VirtualisedSelectOptionOverlay { color: #f8fafc !important; }
+.VirtualisedSelectFocusedOption { background-color: #475569 !important; }
+.Select-clear { color: #ef4444 !important; }
+
+/* --- 4. ÍCONES KPI --- */
+.kpi-icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.kpi-icon-container i {
+    display: inline-block !important;
+}
+
+/* --- 5. CORREÇÃO FORÇADA DOS FILTROS DA TABELA --- */
+
+/* Alvo: Inputs de texto dentro dos cabeçalhos (th) da tabela Dash */
+.dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner th input:not([type=radio]):not([type=checkbox]) {
+    color: #f8fafc !important;       /* Texto Branco */
+    background-color: #1e293b !important; /* Fundo Escuro (igual ao card) */
+    border: 1px solid #475569 !important; /* Borda visível */
+    border-radius: 4px !important;
+    font-family: inherit !important;
+    font-size: 0.85rem !important;
+    padding: 4px 8px !important;
+    line-height: 1.2 !important;
+    min-height: 30px !important;     /* Altura mínima para ser clicável */
+}
+
+/* Cor do texto de placeholder ("filter data...") */
+.dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner th input::placeholder {
+    color: #94a3b8 !important;
+    opacity: 0.8 !important;
+}
+
+/* Cor do ícone de filtro (Aa) quando ativo/focado */
+.dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner th .dash-filter--case--sensitive {
+    color: #38bdf8 !important; /* Azul Neon */
+}
